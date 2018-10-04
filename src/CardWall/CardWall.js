@@ -3,11 +3,16 @@ import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom'
 import { DropTarget } from 'react-dnd'
 
+import Card from '../Card'
+
 const dropTarget = {
   canDrop(props, monitor) {
     // You can disallow drop based on props or item
     const item = monitor.getItem()
-    return true
+    const { status: wallStatus } = props
+    const { status: cardStatus } = item
+
+    return wallStatus !== cardStatus
   },
 
   hover(props, monitor, component) {
@@ -92,6 +97,7 @@ class CardWall extends React.Component {
           <p>{ status }</p>
           <div className='card-wall-content'>
             { children }
+            { isOver && canDrop && <Card empty /> }
           </div>
         </div>
       </div>

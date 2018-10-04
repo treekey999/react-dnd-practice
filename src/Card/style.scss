@@ -13,4 +13,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  
+  &.empty-card {
+    > * { display: none; }
+    background-color: #c9c9c9;
+  }
 }

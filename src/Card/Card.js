@@ -22,6 +22,7 @@ class Card extends React.Component {
   render() {
     const {
       name,
+      empty,
       isDragging, // Injected by React DnD
       connectDragPreview, // Injected by React DnD
       connectDragSource, // Injected by React DnD
@@ -30,13 +31,13 @@ class Card extends React.Component {
 
     return connectDragSource(
       <div
-        className='card'
+        className={`card ${ empty ? 'empty-card' : '' }`}
         style={{
           opacity: isDragging ? 0.6 : 1,
           cursor: isDragging ? 'grabbing' : 'pointer',
         }}
       >
-        { name }
+        <span>{ name }</span>
       </div>
     )
   }
@@ -44,6 +45,7 @@ class Card extends React.Component {
 
 Card.propTypes = {
   name: PropTypes.string,
+  empty: PropTypes.bool,
 
   // Injected by React DnD
   isDragging: PropTypes.bool.isRequired,
