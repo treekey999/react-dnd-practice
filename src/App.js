@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { DragDropContext } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 
 import Card from './Card'
 import CardWall from './CardWall'
@@ -21,7 +23,7 @@ class App extends Component {
         { id: '9', name: 'issue 9999', status: 'deploy' },
       ]
     }
-    window.test_update = this.updateCardStatus.bind(this)
+    this.updateCardStatus = this.updateCardStatus.bind(this)
   }
 
   updateCardStatus(cardId, targetStatus) {
@@ -57,7 +59,11 @@ class App extends Component {
         <div className="board">
           {
             ['todo', 'develop', 'test', 'deploy'].map(status => (
-              <CardWall key={status} status={status}>
+              <CardWall
+                key={status}
+                status={status}
+                updateCardStatus={this.updateCardStatus}
+              >
                 {
                   (cards[status] || []).map(card => (
                     <Card
@@ -77,4 +83,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default DragDropContext(HTML5Backend)(App)
