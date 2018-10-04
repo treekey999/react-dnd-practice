@@ -4,6 +4,7 @@ import HTML5Backend from 'react-dnd-html5-backend'
 
 import Card from './Card'
 import CardWall from './CardWall'
+import CardLayer from './CardLayer'
 
 import './App.scss'
 
@@ -57,6 +58,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="board">
+          <CardLayer />
           {
             ['todo', 'develop', 'test', 'deploy'].map(status => (
               <CardWall
