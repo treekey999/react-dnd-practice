@@ -29,7 +29,13 @@ class Card extends React.Component {
 
 
     return connectDragSource(
-      <div className='card'>
+      <div
+        className='card'
+        style={{
+          opacity: isDragging ? 0.6 : 1,
+          cursor: isDragging ? 'grabbing' : 'pointer',
+        }}
+      >
         { name }
       </div>
     )
